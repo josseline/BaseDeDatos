@@ -1,0 +1,113 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BaseDeDatos.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Proyecto Final Base de Datos 1</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">UMRadio</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Inicio</a></li>
+                        <li><a runat="server" href="~/About">Acerca Del Grupo</a></li>
+                        <% if (HttpContext.Current.User.Identity.IsAuthenticated)
+                           { %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenimientos <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a id="Provincias" runat="server" href="~/Vistas/Provincias/Index">Provincias</a></li>
+                                <li><a id="BandasHertzianas" runat="server" href="~/Vistas/BandaHertziana/Index">Bandas Hertzianas</a></li>
+                                <li><a id="CadenasRadio" runat="server" href="~/Vistas/CadenaRadio/Index">Cadenas de Radio</a></li>
+                                 <li><a id="FranjasHorario" runat="server" href="~/Vistas/FranjaHorario/Index">Franjas Horario</a></li>
+                                 <li><a id="Patrocinadores" runat="server" href="~/Vistas/Patrocinador/Index">Patrocinadores</a></li>
+                                 <li><a id="Personas" runat="server" href="~/Vistas/Personas/Index">Personas</a></li>
+                                <li><a id="Programas" runat="server" href="~/Vistas/Programa/Index">Programas</a></li>
+                                <li><a id="Anuncio" runat="server" href="~/Vistas/Anuncio/Index">Anuncio</a></li>
+                                <li><a id="Emisora" runat="server" href="~/Vistas/Emisora/Index">Emisora</a></li>
+                                <li><a id="CadenaEmisora" runat="server" href="~/Vistas/CadenaEmisora/Index">Cadena Emisora</a></li>
+                                <li><a id="ProgramaFranja" runat="server" href="~/Vistas/ProgramaFranja/Index">Programa Franja</a></li>
+                                <li><a id="Contrato" runat="server" href="~/Vistas/Contrato/Index">Contratos</a></li>
+                                <li><a id="A1" runat="server" href="~/Vistas/MediosComunicacion/Index">Medios de Comunicación</a></li>
+
+
+                            </ul>
+                        </li>
+                        <%} %>
+
+
+                        <%--<li><a runat="server" href="~/Contact">Grupo</a></li>--%>
+                    </ul>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Register">Registrarse</a></li>
+                                <li><a runat="server" href="~/Account/Login">Iniciar Sesi&oacute;n</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hola, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar Sesión" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <center>
+                <p>&copy; Base de Datos I - <%: DateTime.Now.Year %> - Grupo No. 8</p>
+                </center>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
